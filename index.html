@@ -1,0 +1,547 @@
+
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Али & Хаафиза — Үйлөнүү үлпөтү</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --green:#173a31;
+ --dark:#0c2922;
+ --gold:#c3a36a;
+ --cream:#f8f5ed;
+ --text:#25342c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;background:var(--cream);color:var(--text);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}
+body.lock{overflow:hidden}
+button,input,select{font:inherit}
+button{cursor:pointer}
+section{padding:85px 22px}
+.wrap{max-width:680px;margin:auto;text-align:center}
+.kicker{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:3px}
+h1,h2,.serif{font-family:"Cormorant Garamond",Georgia,serif}
+h2{font-size:clamp(49px,11vw,76px);line-height:1.02;color:var(--green);margin:18px 0;font-weight:700}
+.rule{height:1px;width:85px;background:var(--gold);margin:26px auto}
+.ornament{color:var(--gold);font-size:31px;margin:18px}
+p{line-height:1.9}
+
+/* КОНВЕРТ */
+#cover{
+ position:fixed;inset:0;z-index:9999;
+ background:linear-gradient(#09271fd9,#09271ff0),url("IMG_3907.jpeg") center/cover;
+ display:flex;align-items:center;justify-content:center;
+ padding:25px;transition:opacity 1s,visibility 1s;
+}
+#cover.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.cover-inner{width:min(100%,410px);text-align:center}
+.cover-label{color:#e9d4a4;font-size:11px;font-weight:800;letter-spacing:4px;margin-bottom:34px}
+#envelope{
+ position:relative;width:100%;height:245px;border:0;
+ background:#f5eedf;box-shadow:0 25px 75px #0006;
+ perspective:900px;
+}
+#envelope:before{
+ content:"";position:absolute;inset:0;z-index:2;
+ background:
+ linear-gradient(35deg,#e5dac5 49%,transparent 50%) left bottom/51% 100% no-repeat,
+ linear-gradient(-35deg,#f8f1e3 49%,transparent 50%) right bottom/51% 100% no-repeat;
+}
+.flap{
+ position:absolute;inset:0 0 auto;height:59%;
+ background:linear-gradient(135deg,#fffaf0,#ddd0b7);
+ clip-path:polygon(0 0,100% 0,50% 100%);
+ transform-origin:top;transition:transform 1s;z-index:5;
+}
+#envelope.open .flap{transform:rotateX(180deg)}
+.env-name{
+ position:absolute;top:50px;left:0;width:100%;z-index:7;
+ font-family:"Cormorant Garamond",Georgia,serif;
+ font-size:clamp(39px,10vw,55px);font-weight:700;color:var(--green);
+}
+.seal{
+ position:absolute;z-index:8;top:126px;left:50%;
+ transform:translateX(-50%);width:72px;height:72px;
+ border-radius:50%;border:3px double #f6e4bc;
+ background:radial-gradient(circle at 25% 20%,#ebd49b,#b49351 60%,#86632d);
+ display:grid;place-items:center;color:white;
+ font-family:Georgia,serif;font-size:23px;
+ transition:opacity .5s;
+}
+#envelope.open .seal{opacity:0}
+.tap-text{color:white;margin-top:30px;font-size:12px;font-weight:800;letter-spacing:2px;line-height:2.1}
+
+/* САЙТ */
+#site{opacity:0;transition:opacity 1s}
+#site.visible{opacity:1}
+.hero{
+ min-height:100svh;padding:0;position:relative;
+ background:url("IMG_3579.jpeg") center/cover;
+ display:flex;align-items:flex-end;justify-content:center;
+}
+.hero:before{
+ content:"";position:absolute;inset:0;
+ background:linear-gradient(transparent 20%,#071c168c 65%,#071c16ed);
+}
+.hero-content{position:relative;text-align:center;color:white;padding:50px 20px 75px;width:100%}
+.hero h1{
+ font-size:clamp(65px,16vw,110px);
+ line-height:.88;font-weight:600;margin:25px 0;
+}
+.hero h1 span{display:block;font-size:.65em;color:#e9d4a4;font-style:italic}
+.hero-date{font-size:16px;font-weight:800;letter-spacing:3px}
+.hero-sub{font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;margin-top:20px}
+.invite{background:var(--cream)}
+.invite-text{font-size:clamp(17px,4.5vw,21px);font-weight:600;line-height:2.05;margin:28px auto}
+.invite-text strong{color:var(--green);font-weight:800}
+.quote{font-family:"Cormorant Garamond",Georgia,serif;font-size:32px;font-weight:700;color:var(--green)}
+.photo{background:var(--green);padding:55px 20px}
+.frame{border:1px solid var(--gold);padding:9px;max-width:590px;margin:auto}
+.frame img{display:block;width:100%;max-height:730px;object-fit:cover}
+.photo-note{text-align:center;color:#e9d4a4;font-family:"Cormorant Garamond",Georgia,serif;font-size:34px;margin-top:28px}
+.date{background:#fffefa}
+.big-date{font-size:21px;font-weight:800;color:var(--green)}
+.time{font-family:"Cormorant Garamond",Georgia,serif;font-size:68px;font-weight:700;color:var(--gold)}
+.calendar{background:var(--cream);border:1px solid #d7c6a4;max-width:450px;margin:35px auto 0;padding:25px 15px}
+.month{font-size:19px;font-weight:800;color:var(--green);letter-spacing:2px;margin-bottom:22px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.days div{min-height:38px;display:grid;place-items:center;font-weight:700;position:relative}
+.days .week{font-size:12px;color:var(--gold);font-weight:800}
+.days .chosen{color:white;z-index:1}
+.days .chosen:before{content:"";position:absolute;z-index:-1;width:39px;height:39px;border-radius:50%;background:var(--green);border:2px solid var(--gold)}
+.calendar-foot{margin-top:18px;font-size:13px;font-weight:800;color:var(--gold)}
+.count-section{
+ background:linear-gradient(#0c3027d9,#0c3027e8),url("IMG_3907.jpeg") center/cover;
+ color:white;min-height:530px;display:flex;align-items:center;
+}
+.count-section h2{color:white}
+.count-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);margin-top:40px}
+.count-cell{padding:20px 2px;border-right:1px solid #ffffff40}
+.count-cell:last-child{border:0}
+.count-cell strong{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(36px,9vw,60px);color:#e9d4a4}
+.count-cell small{font-size:10px;font-weight:800}
+.location{background:var(--cream)}
+.venue{font-family:"Cormorant Garamond",Georgia,serif;font-size:42px;font-weight:700;color:var(--green)}
+.address{font-size:18px;font-weight:700}
+.map-link,.send{
+ display:inline-block;background:var(--green);color:white;
+ border:1px solid var(--gold);padding:18px 25px;
+ text-decoration:none;font-size:12px;font-weight:800;letter-spacing:1.5px;
+ margin-top:25px;
+}
+.rsvp{background:#fffefa}
+.rsvp p{font-size:17px;font-weight:600}
+form{max-width:500px;text-align:left;margin:32px auto 0}
+label.field{display:block;margin:22px 0 10px;font-size:15px;font-weight:800;color:var(--green)}
+input[type=text],select{
+ width:100%;padding:16px;border:1px solid #c8bca3;
+ background:var(--cream);font-size:16px;border-radius:0;
+}
+.choice{display:flex;align-items:center;gap:12px;margin:16px 0;font-weight:700}
+.choice input{width:18px;height:18px;accent-color:var(--green)}
+.send{width:100%;cursor:pointer}
+.note{font-size:12px!important;color:#657067}
+.final{background:var(--green);color:white;padding-bottom:0}
+.final h2{color:white}
+.hosts{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(55px,12vw,82px);font-weight:700;color:#e9d4a4;margin:20px 0}
+.final-text{font-size:18px;font-weight:600;margin-bottom:50px}
+.final-photo{max-width:650px;margin:auto;border-top:5px solid var(--gold)}
+.final-photo img{width:100%;display:block}
+footer{padding:25px;background:var(--dark);color:#e9d4a4;text-align:center;font-size:12px;font-weight:800;letter-spacing:2px}
+
+/* БАШКАРУУ */
+#controls{position:fixed;right:16px;bottom:20px;z-index:900;display:none;flex-direction:column;gap:12px}
+.control{width:55px;height:55px;border-radius:50%;border:1px solid var(--gold);background:var(--green);color:#e9d4a4;font-size:22px;box-shadow:0 8px 25px #0004}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s,transform .9s}
+.reveal.show{opacity:1;transform:none}
+@media(max-width:480px){
+ section{padding:72px 20px}
+ .photo{padding:45px 18px}
+ .final{padding-bottom:0}
+ #envelope{height:225px}
+ .seal{top:110px}
+ .env-name{top:43px}
+}
+@media(prefers-reduced-motion:reduce){
+ .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body class="lock">
+
+<!-- КОНВЕРТ -->
+<div id="cover">
+ <div class="cover-inner">
+  <div class="cover-label">WEDDING INVITATION</div>
+  <button id="envelope" aria-label="Чакыруу катты ачуу">
+   <div class="flap"></div>
+   <div class="env-name">Али & Хаафиза</div>
+   <div class="seal">A&H</div>
+  </button>
+  <div class="tap-text">ЧАКЫРУУ КАТТЫ АЧУУ ҮЧҮН БАСЫҢЫЗ<br>✧ ♡ ✧</div>
+ </div>
+</div>
+
+<!-- АКЫРКЫ ЖИБЕРГЕН МУЗЫКА -->
+<audio id="music" loop preload="auto">
+ <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div id="controls">
+ <button id="scrollBtn" class="control" aria-label="Жылууну токтотуу">❚❚</button>
+ <button id="musicBtn" class="control" aria-label="Музыканы токтотуу">♫</button>
+</div>
+
+<main id="site">
+
+<!-- БАШКЫ СҮРӨТ -->
+<section class="hero">
+ <div class="hero-content">
+  <div class="kicker" style="color:#e9d4a4">БИЗДИН ҮЙЛӨНҮҮ ҮЛПӨТҮБҮЗ</div>
+  <h1>Али<span>&</span>Хаафиза</h1>
+  <div class="hero-date">30 • 10 • 2026</div>
+  <div class="hero-sub">Эки жүрөк — бир тагдыр</div>
+ </div>
+</section>
+
+<!-- ЧАКЫРУУ -->
+<section class="invite">
+ <div class="wrap reveal">
+  <div class="kicker">WITH LOVE</div>
+  <h2>Урматтуу<br>коноктор!</h2>
+  <div class="ornament">❦</div>
+  <p class="invite-text">
+   Сиздерди балдарыбыз
+   <strong>Али менен Хаафизанын</strong>
+   үйлөнүү үлпөт тоюна арналган салтанаттуу кечебизге чакырабыз.
+   Тойго келип, кубанычыбызды биз менен бөлүшүп,
+   кадырлуу коногубуз болуп кетиңиздер!
+  </p>
+  <div class="rule"></div>
+  <div class="quote">Сүйүү — эки жүрөктүн бир жолу</div>
+ </div>
+</section>
+
+<!-- СҮРӨТ -->
+<section class="photo">
+ <div class="reveal">
+  <div class="frame">
+   <img src="IMG_3909.jpeg" alt="Үйлөнүү үлпөтүнүн сүрөтү" loading="lazy">
+  </div>
+  <div class="photo-note">Forever & Always</div>
+ </div>
+</section>
+
+<!-- КАЛЕНДАРЬ -->
+<section class="date">
+ <div class="wrap reveal">
+  <div class="kicker">SAVE THE DATE</div>
+  <h2>Той күнү</h2>
+  <div class="rule"></div>
+  <div class="big-date">30-ОКТЯБРЬ, 2026-ЖЫЛ</div>
+  <div class="time">17:00</div>
+
+  <div class="calendar">
+   <div class="month">ОКТЯБРЬ 2026</div>
+   <div class="days">
+    <div class="week">Дш</div><div class="week">Шш</div>
+    <div class="week">Шр</div><div class="week">Бш</div>
+    <div class="week">Жм</div><div class="week">Иш</div>
+    <div class="week">Жк</div>
+    <div></div><div></div><div></div>
+    <div>1</div><div>2</div><div>3</div><div>4</div>
+    <div>5</div><div>6</div><div>7</div>
+    <div>8</div><div>9</div><div>10</div><div>11</div>
+    <div>12</div><div>13</div><div>14</div>
+    <div>15</div><div>16</div><div>17</div><div>18</div>
+    <div>19</div><div>20</div><div>21</div>
+    <div>22</div><div>23</div><div>24</div><div>25</div>
+    <div>26</div><div>27</div><div>28</div>
+    <div>29</div><div class="chosen">30</div><div>31</div>
+   </div>
+   <div class="calendar-foot">♡ БИЗДИН ӨЗГӨЧӨ КҮН ♡</div>
+  </div>
+ </div>
+</section>
+
+<!-- ТАЙМЕР -->
+<section class="count-section">
+ <div class="wrap reveal">
+  <div class="kicker">COUNTING DOWN</div>
+  <h2>Тойго чейин</h2>
+  <div class="count-grid">
+   <div class="count-cell"><strong id="days">00</strong><small>КҮН</small></div>
+   <div class="count-cell"><strong id="hours">00</strong><small>СААТ</small></div>
+   <div class="count-cell"><strong id="minutes">00</strong><small>МҮНӨТ</small></div>
+   <div class="count-cell"><strong id="seconds">00</strong><small>СЕКУНД</small></div>
+  </div>
+ </div>
+</section>
+
+<!-- ДАРЕК -->
+<section class="location">
+ <div class="wrap reveal">
+  <div class="kicker">THE LOCATION</div>
+  <h2>Дарегибиз</h2>
+  <div class="ornament">✧</div>
+  <div class="venue">Банкеттик зал «Аврора»</div>
+  <p class="address">Бишкек шаары<br>Ибраимова көчөсү, 2/2</p>
+  <a class="map-link" target="_blank" rel="noopener noreferrer"
+   href="https://www.google.com/maps/search/?api=1&amp;query=Аврора+Ибраимова+2%2F2+Бишкек">
+   КАРТАДАН КӨРҮҮ ↗
+  </a>
+ </div>
+</section>
+
+<!-- КОНОКТОРДУН ЖООБУ -->
+<section class="rsvp" id="rsvp">
+ <div class="wrap reveal">
+  <div class="kicker">RSVP</div>
+  <h2>Тойго келесизби?</h2>
+  <div class="rule"></div>
+  <p>Кубанычтуу күнүбүздө сиздерди көрүүгө абдан кубанычта болобуз!</p>
+
+  <form id="rsvpForm">
+   <label class="field" for="guestName">Аты-жөнүңүз</label>
+   <input id="guestName" type="text" placeholder="Аты-жөнүңүз" required>
+
+   <label class="field">Тойго катышасызбы?</label>
+   <label class="choice">
+    <input type="radio" name="attendance" value="Ооба, барам" required>
+    Ооба, сөзсүз барам
+   </label>
+   <label class="choice">
+    <input type="radio" name="attendance" value="Бара албайм">
+    Тилекке каршы, бара албайм
+   </label>
+
+   <label class="field" for="guestCount">Канча адам келесиздер?</label>
+   <select id="guestCount">
+    <option value="1">1 адам</option>
+    <option value="2">2 адам</option>
+    <option value="3">3 адам</option>
+    <option value="4">4 адам</option>
+    <option value="5">5 адам</option>
+    <option value="6">6 адам</option>
+    <option value="7">7 адам</option>
+    <option value="8">8 адам</option>
+    <option value="9">9 адам</option>
+    <option value="10">10 адам</option>
+   </select>
+
+   <button type="submit" class="send">WHATSAPP АРКЫЛУУ ЖӨНӨТҮҮ ↗</button>
+   <p class="note">Жоопту жөнөтүү үчүн WhatsApp'тан алуучуну тандайсыз.</p>
+  </form>
+ </div>
+</section>
+
+<!-- АКЫРКЫ БӨЛҮК -->
+<section class="final">
+ <div class="wrap reveal">
+  <div class="kicker">WITH LOVE & GRATITUDE</div>
+  <h2>Сиздерди күтөбүз!</h2>
+  <div class="ornament">❦</div>
+  <p>Сиздерди терең урматтоо менен,<br>той ээлери:</p>
+  <div class="hosts">Алтын & Айнура</div>
+  <p class="final-text">
+   Тойго келип, ак батаңызды берип,
+   кубанычыбызды биз менен бөлүшүп,
+   кадырлуу коногубуз болуп кетиңиздер!
+  </p>
+ </div>
+ <div class="final-photo">
+  <img src="IMG_3910.jpeg" alt="Үйлөнүү үлпөтү" loading="lazy">
+ </div>
+</section>
+
+<footer>АЛИ & ХААФИЗА • 30.10.2026</footer>
+</main>
+
+<script>
+const cover=document.getElementById("cover");
+const envelope=document.getElementById("envelope");
+const site=document.getElementById("site");
+const music=document.getElementById("music");
+const musicBtn=document.getElementById("musicBtn");
+const scrollBtn=document.getElementById("scrollBtn");
+const controls=document.getElementById("controls");
+const rsvp=document.getElementById("rsvp");
+
+let opened=false;
+let auto=false;
+let frame=null;
+let last=null;
+const SPEED=45;
+
+/* МУЗЫКА */
+function musicState(){
+ const playing=!music.paused;
+ musicBtn.textContent=playing?"♫":"♪";
+ musicBtn.setAttribute("aria-label",playing?"Музыканы токтотуу":"Музыканы ойнотуу");
+}
+
+function startMusic(){
+ music.volume=.7;
+ const result=music.play();
+ if(result && typeof result.catch==="function"){
+  result.then(musicState).catch(err=>{
+   console.log("Музыка ойной алган жок:",err);
+   musicState();
+  });
+ }
+}
+
+music.addEventListener("play",musicState);
+music.addEventListener("pause",musicState);
+music.addEventListener("error",()=>{
+ musicBtn.textContent="!";
+ musicBtn.title="music.mp3 файлын текшериңиз";
+});
+
+/* АВТОМАТТЫК ЖЫЛУУ */
+function buttonState(){
+ scrollBtn.textContent=auto?"❚❚":"▶";
+}
+
+function stopScroll(){
+ auto=false;
+ last=null;
+ if(frame!==null)cancelAnimationFrame(frame);
+ frame=null;
+ buttonState();
+}
+
+function scrollFrame(t){
+ if(!auto)return;
+ if(last===null)last=t;
+ const dt=Math.min((t-last)/1000,.1);
+ last=t;
+
+ const rsvpTop=rsvp.getBoundingClientRect().top;
+ const bottom=document.documentElement.scrollHeight-innerHeight;
+
+ if(rsvpTop<=innerHeight*.65 || scrollY>=bottom-1){
+  stopScroll();
+  return;
+ }
+
+ window.scrollBy(0,SPEED*dt);
+ frame=requestAnimationFrame(scrollFrame);
+}
+
+function startScroll(){
+ if(!opened || auto)return;
+ if(rsvp.getBoundingClientRect().top<=innerHeight*.65)return;
+ auto=true;
+ last=null;
+ buttonState();
+ frame=requestAnimationFrame(scrollFrame);
+}
+
+/* КОНВЕРТТИ АЧУУ */
+envelope.addEventListener("click",()=>{
+ if(opened)return;
+ opened=true;
+ envelope.classList.add("open");
+
+ // Музыка басылган учурда башталат
+ startMusic();
+
+ setTimeout(()=>{
+  cover.classList.add("hidden");
+  site.classList.add("visible");
+  document.body.classList.remove("lock");
+  controls.style.display="flex";
+  musicState();
+  initReveal();
+
+  // 2 секунддан кийин өзү жылат
+  setTimeout(startScroll,2000);
+ },1100);
+});
+
+/* БАШКАРУУ */
+musicBtn.addEventListener("click",()=>{
+ if(music.paused)startMusic();
+ else music.pause();
+});
+
+scrollBtn.addEventListener("click",()=>{
+ if(auto)stopScroll();
+ else startScroll();
+});
+
+document.addEventListener("touchstart",e=>{
+ if(!opened || !auto)return;
+ if(e.target.closest("#controls"))return;
+ stopScroll();
+},{passive:true});
+
+document.addEventListener("wheel",()=>{
+ if(auto)stopScroll();
+},{passive:true});
+
+document.addEventListener("keydown",e=>{
+ if(auto && ["ArrowDown","ArrowUp","PageDown","PageUp"," ","Home","End"].includes(e.key)){
+  stopScroll();
+ }
+});
+
+/* ТАЙМЕР */
+const wedding=new Date("2026-10-30T17:00:00+06:00").getTime();
+
+function countdown(){
+ let diff=Math.max(0,wedding-Date.now());
+ const d=Math.floor(diff/86400000);
+ const h=Math.floor(diff/3600000)%24;
+ const m=Math.floor(diff/60000)%60;
+ const s=Math.floor(diff/1000)%60;
+
+ document.getElementById("days").textContent=d;
+ document.getElementById("hours").textContent=String(h).padStart(2,"0");
+ document.getElementById("minutes").textContent=String(m).padStart(2,"0");
+ document.getElementById("seconds").textContent=String(s).padStart(2,"0");
+}
+countdown();
+setInterval(countdown,1000);
+
+/* WHATSAPP RSVP */
+document.getElementById("rsvpForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ stopScroll();
+
+ const name=document.getElementById("guestName").value.trim();
+ const attendance=document.querySelector('input[name="attendance"]:checked');
+ const count=document.getElementById("guestCount").value;
+ if(!name || !attendance)return;
+
+ const message=
+  "Саламатсыздарбы! 🤍\n\n"+
+  "Али & Хаафизанын тоюна жооп:\n"+
+  "Аты-жөнүм: "+name+"\n"+
+  "Катышуум: "+attendance.value+"\n"+
+  "Адам саны: "+count+"\n\nРахмат!";
+
+ window.location.href="https://api.whatsapp.com/send?text="+encodeURIComponent(message);
+});
+
+/* ЖУМШАК АНИМАЦИЯ */
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   entry.target.classList.add("show");
+   observer.unobserve(entry.target);
+  }
+ });
+},{threshold:.1});
+
+function initReveal(){
+ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+}
+</script>
+</body>
+</html>
